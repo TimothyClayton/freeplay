@@ -1,6 +1,5 @@
 class Timbot < Freeplay::Player
 
-  ##############################################################################
   def move
     x, y = 0, 0
 
@@ -24,8 +23,8 @@ class Timbot < Freeplay::Player
         end
       end
 
-      puts(@empty_spaces.join(', '))
       x, y = @empty_spaces.last
+      puts(@empty_spaces.join(', '))
       puts x, y
     end
 

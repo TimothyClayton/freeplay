@@ -1,6 +1,5 @@
 class Timbot < Freeplay::Player
 
-  ##############################################################################
   def move
     x, y = 0, 0
 
@@ -13,7 +12,7 @@ class Timbot < Freeplay::Player
       x, y = match.sort.sample if match
     end
 
-    # If that didn't work move to last empty space on the board.
+    # If that didn't work move to index[-5] of array of empty spaces; else last.
     if x.nil? or y.nil?
       logger.info("searching for last empty space on the board")
       
@@ -23,10 +22,15 @@ class Timbot < Freeplay::Player
           @empty_spaces << [bx, by] if board[bx, by] == :empty
         end
       end
-      
-      puts(@empty_spaces.join(', '))      
-      x, y = @empty_spaces.last
-      puts x, y
+
+      if @empty_spaces.size >= 7
+        x, y = @empty_spaces[-5]
+
+      else
+        puts(@empty_spaces.join(', '))      
+        x, y = @empty_spaces.last
+        puts x, y
+      end
     end
     
     # Return the desired location on the board.
