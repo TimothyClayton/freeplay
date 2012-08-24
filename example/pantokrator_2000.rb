@@ -2,7 +2,7 @@ class Timbot < Freeplay::Player
 
   ##############################################################################
   def move
-    x, y = nil, nil
+    x, y = 0, 0
 
     # Move to the last empty space adjacent to my opponent's last move.
     if board.last_opponent_move
@@ -13,7 +13,7 @@ class Timbot < Freeplay::Player
       x, y = match.sort.last if match
     end
 
-    # If that didn't work move to random empty space on the board.
+    # If that didn't work move to last empty space on the board.
     if x.nil? or y.nil?
       logger.info("searching for random empty space")
 
@@ -25,7 +25,7 @@ class Timbot < Freeplay::Player
       end
 
       puts(@empty_spaces.join(', '))
-      x, y = @empty_spaces.sample
+      x, y = @empty_spaces.last
       puts x, y
     end
 

@@ -1,6 +1,5 @@
 class Timbot < Freeplay::Player
 
-  ##############################################################################
   def move
     # Start at random spot :)
     x, y = nil, nil
